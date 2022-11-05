@@ -26,8 +26,9 @@ def s3_save_instance_df(input_df: pd.DataFrame, s3_key: str):
     aws s3 saving of scrapped data base on individual run time
     this approach would create single csv file every day or append to existing file
     """
-    # setting the filler for the naming convention
-    now = datetime.datetime.now() + datetime.timedelta(hours=8)
+    # setting datatype conversion
+    input_df['ssocCode'] = input_df['ssocCode'].astype('int')
+    
     # setting the S3 bucket name
     aws_s3_bucket = 'mcf'
     
